@@ -1,5 +1,5 @@
 {
-  "name": "docs",
+  "name": "userapp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/db":"*",
+    "@repo/db": "*",
+    "@repo/store": "*",
     "@repo/ui": "*",
     "next": "14.2.6",
+    "path": "^0.12.7",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
