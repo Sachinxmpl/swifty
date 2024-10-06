@@ -5,18 +5,21 @@
   "main": "index.js",
   "exports": {
     "./store": "./src/index.ts",
-    "./slices":"./src/slices/balanceSlice.ts",
-    "./idea" : "./src/test.js"
+    "./slices": "./src/slices/balanceSlice.ts",
+    "./idea": "./src/test.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
-    "react-redux": "^9.1.2"
+    "@types/react": "^18.3.5",
+    "@types/react-redux": "^7.1.33",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "react-redux": "^9.1.2",
+    "vite": "^5.4.4"
   }
 }
