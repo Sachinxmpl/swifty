@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@repo/db": "*",
-    "@repo/store": "*",
     "@repo/ui": "*",
     "next": "14.2.6",
     "path": "^0.12.7",
