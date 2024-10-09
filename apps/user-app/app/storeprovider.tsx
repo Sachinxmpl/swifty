@@ -1,17 +1,12 @@
 "use client"
-import store from "@repo/store/store";
-import {Provider} from "react-redux" ;
+
+import { RecoilRoot } from "recoil"
 
 
-export const Storewrapper = ({
-            children,
-    }: Readonly<{
-            children: React.ReactNode;
-    }>) =>{
-            return (
-                        <Provider store={store}>
-                                                {children}
-                        </Provider>
-            )
-
-    }
+export const StoreProvider = ({children} : {children : React.ReactNode})=>{
+        return (
+                <RecoilRoot>
+                        {children}
+                </RecoilRoot>
+        )
+}

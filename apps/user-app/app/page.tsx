@@ -1,20 +1,18 @@
+"use client"
 
 
-import { Button } from "@repo/ui/button";
-
+import {useBalance} from "@repo/store/usebalance"
 
 
 
 export default function Home() {
-
+	const balance = useBalance() ; 
 	return (
-		<>
-		<Button appName="uer-app">
-			Click Me
-		</Button>
-			<div className="bg-blue-800 text-center text-white">
-				Hi how are you
-			</div>
+		<>		
+			
+				<div>
+					The balance is {balance}
+				</div>
 		</>
 	);
 }
