@@ -22,6 +22,7 @@ export const authOptions = {
                                     },
                                     async authorize(credentails: Credentials) {
                                                 const { phone, password } = credentails;
+                                                console.log("__________PHONE" , phone , password)
                                                 const hashedpassword = await bcrypt.hash(password, 10);
 
                                                 const existinguser = await prismaClient.user.findFirst({
@@ -30,7 +31,7 @@ export const authOptions = {
                                                             },
                                                 });
                                                 if(existinguser){
-                                                            const isPasswordVerified = await bcrypt.compare(hashedpassword , existinguser.password)
+                                                            const isPasswordVerified = await bcrypt.compare(password , existinguser.password)
                                                             if(isPasswordVerified){
                                                                         return {
                                                                                     id : existinguser.id,
@@ -38,7 +39,9 @@ export const authOptions = {
                                                                                     number : existinguser.number 
                                                                         }
                                                             }
-                                                            return null 
+                                                            else {
+                                                                        return null 
+                                                            }
                                                 }
 
                                                 try{

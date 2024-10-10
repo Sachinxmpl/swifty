@@ -2,14 +2,17 @@
 
 
 import {useBalance} from "@repo/store/usebalance"
-import { Appbar } from "@repo/ui/appbar";
 
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+	const session = useSession()
 	const balance = useBalance() ; 
 	return (
 		<>		
-				<Appbar  onSignin={()=> console.log("singiin")} onSignout={()=> console.log("signout")}/>
+				{
+					JSON.stringify(session.data?.user)
+				}
 				<div>
 					The balance is {balance}
 				</div>
