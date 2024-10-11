@@ -19,6 +19,9 @@ model User {
        name     String @default("user")
        number   String @unique
        password String
+       balance Balance[]
+       onRampTransactions OnRampTransaction[]
+
 }
 
 model Merchant {
@@ -28,7 +31,33 @@ model Merchant {
        auth_type AuthType
 }
 
+model Balance{
+       id Int @id @default(autoincrement())
+       amount Int 
+       locked Int 
+       userId Int 
+       user User @relation(fields: [userId],references: [id])       
+}
+
+
+model OnRampTransaction{
+       id Int @id @default(autoincrement())
+       status TransactionStatus
+       token Int @unique
+       startTime DateTime
+       amount Int
+       provider String
+       userId Int 
+       user User @relation(fields: [userId] , references: [id])
+}
+
 enum AuthType {
        Google
        Github
+}
+
+enum TransactionStatus{
+       processing 
+       success 
+       failure
 }
