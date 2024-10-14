@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-       id String @id @default(uuid())
+       id Int @id @default(autoincrement())
        number String @unique
        password String 
        email String? @unique
@@ -25,7 +25,7 @@ model User {
 }
 
 model Merchant{
-       id String @id @default(uuid())
+         id Int @id @default(autoincrement())
        email String @unique 
        name String? @default("merchant")
        authType Authtype 
@@ -38,7 +38,7 @@ enum Authtype {
 
 model Balance{
        id Int @id @default(autoincrement())
-       userId String 
+       userId Int @unique
        amount Int 
        locked Int 
        user User  @relation(fields: [userId] , references: [id])
@@ -52,7 +52,7 @@ model OnRampTransaction{
        token String 
        provider String
        startTime DateTime
-       userId String 
+       userId Int 
        user User @relation(fields: [userId] , references: [id])
 }
 
