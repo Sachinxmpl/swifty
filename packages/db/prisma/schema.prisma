@@ -14,50 +14,50 @@ datasource db {
 }
 
 model User {
-       id       Int    @id @default(autoincrement())
-       email    String? @unique
-       name     String @default("user")
-       number   String @unique
-       password String
+       id String @id @default(uuid())
+       number String @unique
+       password String 
+       email String? @unique
+       isEmailVerified Boolean @default(false)
+       name String? @default("user")
        balance Balance[]
-       onRampTransactions OnRampTransaction[]
-
+       OnRampTransaction OnRampTransaction[]
 }
 
-model Merchant {
-       id        Int      @id @default(autoincrement())
-       email     String   @unique
-       name      String?
-       auth_type AuthType
+model Merchant{
+       id String @id @default(uuid())
+       email String @unique 
+       name String? @default("merchant")
+       authType Authtype 
+}
+
+enum Authtype {
+       Google 
+       Github 
 }
 
 model Balance{
        id Int @id @default(autoincrement())
+       userId String 
        amount Int 
        locked Int 
-       userId Int 
-       user User @relation(fields: [userId],references: [id])       
+       user User  @relation(fields: [userId] , references: [id])
 }
 
 
 model OnRampTransaction{
        id Int @id @default(autoincrement())
-       status TransactionStatus
-       token Int @unique
-       startTime DateTime
-       amount Int
+       status OnRampStatus 
+       amount Int 
+       token String 
        provider String
-       userId Int 
+       startTime DateTime
+       userId String 
        user User @relation(fields: [userId] , references: [id])
 }
 
-enum AuthType {
-       Google
-       Github
-}
-
-enum TransactionStatus{
-       processing 
-       success 
-       failure
+enum OnRampStatus{
+       Pending 
+       Failure 
+       Success
 }

@@ -22,7 +22,7 @@ export const authOptions = {
                                     },
                                     async authorize(credentails: Credentials) {
                                                 const { phone, password } = credentails;
-                                                console.log("__________PHONE" , phone , password)
+                                                console.log("__________PHONE", phone, password)
                                                 const hashedpassword = await bcrypt.hash(password, 10);
 
                                                 const existinguser = await prismaClient.user.findFirst({
@@ -30,45 +30,46 @@ export const authOptions = {
                                                                         number: phone,
                                                             },
                                                 });
-                                                if(existinguser){
-                                                            const isPasswordVerified = await bcrypt.compare(password , existinguser.password)
-                                                            if(isPasswordVerified){
+                                                if (existinguser) {
+                                                            const isPasswordVerified = await bcrypt.compare(password, existinguser.password)
+                                                            if (isPasswordVerified) {
                                                                         return {
-                                                                                    id : existinguser.id,
-                                                                                    name : existinguser.name , 
-                                                                                    number : existinguser.number 
+                                                                                    id: existinguser.id,
+                                                                                    name: existinguser.name,
+                                                                                    number: existinguser.number
                                                                         }
                                                             }
                                                             else {
-                                                                        return null 
+                                                                        return null
                                                             }
                                                 }
 
-                                                try{
-                                                                        const createdUser =  await prismaClient.user.create({
-                                                                                    data : {
-                                                                                                number : phone , 
-                                                                                                password : hashedpassword,
-                                                                                    }
-                                                                        })
-                                                                        return {
-                                                                                    id : createdUser.id , 
-                                                                                    name : createdUser.name , 
-                                                                                    number: createdUser.number 
+                                                try {
+                                                            console.log("______________Creating new user____________________")
+                                                            const createdUser = await prismaClient.user.create({
+                                                                        data: {
+                                                                                    number: phone,
+                                                                                    password: hashedpassword,
                                                                         }
-                                                }catch(e){
-                                                            console.log("Error in creating new user" , e)
+                                                            })
+                                                            return {
+                                                                        id: createdUser.id,
+                                                                        name: createdUser.name,
+                                                                        number: createdUser.number
+                                                            }
+                                                } catch (e) {
+                                                            console.log("Error in creating new user", e)
                                                             return null
                                                 }
-                                               
+
                                     },
                         }),
-            ], 
-            secret : process.env.NEXT_AUTH_SECRET || "" , 
-            callbacks : {
-                        async session({session  , token } : any){
-                                                          session.user.id = token.sub 
-                                                          return session                           
+            ],
+            secret: process.env.NEXT_AUTH_SECRET || "",
+            callbacks: {
+                        async session({ session, token }: any) {
+                                    session.user.id = token.sub
+                                    return session
                         }
             }
 };
