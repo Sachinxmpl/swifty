@@ -71,5 +71,8 @@ export const authOptions = {
                                     session.user.id = token.sub
                                     return session
                         }
+            } , 
+            pages : {
+                        signIn : "/signin" , 
             }
 };
