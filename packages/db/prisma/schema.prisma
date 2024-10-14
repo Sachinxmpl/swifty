@@ -49,10 +49,10 @@ model OnRampTransaction{
        id Int @id @default(autoincrement())
        status OnRampStatus 
        amount Int 
-       token String 
+       token String @unique
        provider String
        startTime DateTime
-       userId Int 
+       userId Int @unique
        user User @relation(fields: [userId] , references: [id])
 }
 

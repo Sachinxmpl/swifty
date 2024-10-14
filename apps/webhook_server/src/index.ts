@@ -5,7 +5,7 @@ import prismaClient from "@repo/db/client";
 
 interface PaymentInfo {
             token: string,
-            userId: string,
+            userId: number,
             amount: number,
 }
 
