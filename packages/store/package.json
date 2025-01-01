@@ -1,22 +1,22 @@
 {
-        "name": "@repo/store",
-        "version": "1.0.0",
-        "description": "",
-        "main": "index.js",
-        "scripts": {
-                "test": "echo \"Error: no test specified\" && exit 1"
-        },
-        "exports": {
-                "./usebalance" : "./src/hooks/usebalance.ts"
-        },
-        "keywords": [],
-        "author": "",
-        "license": "ISC",
-        "dependencies": {
-                "@types/react": "^18.3.5",
-                "@types/recoil": "^0.0.9",
-                "@vitejs/plugin-react-swc": "^3.7.0",
-                "recoil": "^0.7.7",
-                "vite": "^5.4.4"
-        }
+  "name": "@repo/store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    "./usebalance": "./src/hooks/usebalance.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^18.3.5",
+    "@types/recoil": "^0.0.9",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "recoil": "^0.7.7",
+    "vite": "^5.4.4"
+  }
 }

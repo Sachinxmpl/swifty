@@ -3,15 +3,19 @@ import { authOptions } from "../../lib/auth";
 import { NextResponse } from "next/server";
 
 
-export async function GET(){
-            const session = await getServerSession(authOptions)
-            console.log(session)
-            if(session?.user){
-                        return NextResponse.json({
-                                    user : session.user 
-                        })
-            }
-            return NextResponse.json({
-                        message : "Your are not logged in" 
-            })
+
+
+const getUserDetails = async() =>{
+    const session = await getServerSession(authOptions) ; 
+    if(session?.user){
+        return NextResponse.json({
+            user : session.user 
+        })
+    }
+    return NextResponse.json({
+        message : "You are not logged in "
+    })
 }
+
+
+export {getUserDetails as GET , getUserDetails as POST}

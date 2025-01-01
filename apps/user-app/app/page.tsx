@@ -1,21 +1,27 @@
 "use client"
 
 
-import {useBalance} from "@repo/store/usebalance"
-
-import { useSession } from "next-auth/react";
+import { useBalance } from "@repo/store/usebalance"
+import { useSession } from "next-auth/react"
+import {AppbarUser} from "../components/Appbaruser"
 
 export default function Home() {
-	const session = useSession()
-	const balance = useBalance() ; 
+	const balance = useBalance();
+	const session = useSession();
 	return (
-		<>		
+		<>	
+			<AppbarUser />
+			<div>
 				{
 					JSON.stringify(session.data?.user)
 				}
-				<div>
-					The balance is {balance}
-				</div>
+			</div>
+			<div>
+				The balance is {balance}
+			</div>
 		</>
-	);
+
+	)
 }
+
+

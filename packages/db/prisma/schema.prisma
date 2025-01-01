@@ -5,59 +5,58 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-       provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-       provider = "postgresql"
-       url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model User {
-       id Int @id @default(autoincrement())
-       number String @unique
-       password String 
-       email String? @unique
-       isEmailVerified Boolean @default(false)
-       name String? @default("user")
-       balance Balance?
-       OnRampTransaction OnRampTransaction[]
+model User{
+  id Int @id @default(autoincrement())
+  number String @unique
+  password String
+  email String? @unique
+  isEmailVerified Boolean @default(false)
+  name String? @default("user")
+  balance Balance?
+  onRampTransactions OnRampTransaction[]
 }
 
-model Merchant{
-         id Int @id @default(autoincrement())
-       email String @unique 
-       name String? @default("merchant")
-       authType Authtype 
+model merchant{
+  id Int @id @default(autoincrement())
+  email String @unique
+  name String? @default("merchant")
+  authType Authtype
 }
 
-enum Authtype {
-       Google 
-       Github 
+enum Authtype{
+  Google 
+  Github
 }
 
 model Balance{
-       id Int @id @default(autoincrement())
-       userId Int @unique
-       amount Int @default(0)
-       locked Int @default(0)
-       user User  @relation(fields: [userId] , references: [id])
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  amount Int @default(0)
+  locked Int @default(0)
+  user User @relation(fields: [userId] , references: [id])
 }
-
 
 model OnRampTransaction{
-       id Int @id @default(autoincrement())
-       status OnRampStatus 
-       amount Int 
-       token String @unique
-       provider String
-       startTime DateTime
-       userId Int @unique
-       user User @relation(fields: [userId] , references: [id])
+  id Int @id @default(autoincrement())
+  status onRampStatus
+  amount Int
+  token String @unique
+  provider String 
+  startTime DateTime
+  userId Int @unique
+  user User @relation(fields: [userId] , references: [id])
 }
 
-enum OnRampStatus{
-       Pending 
-       Failure 
-       Success
+enum onRampStatus{
+  Pending
+  Failure
+  Success
 }
