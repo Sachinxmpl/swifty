@@ -8,6 +8,7 @@ type Credentials = {
 };
 
 
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -54,6 +55,13 @@ export const authOptions = {
               password: hashedpassword,
             },
           });
+
+          await prismaClient.balance.create({
+            data : {
+              userId : createdUser.id,
+            }
+          })
+
           return {
             id: createdUser.id,
             name: createdUser.name,
