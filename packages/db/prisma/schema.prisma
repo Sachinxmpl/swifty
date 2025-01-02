@@ -51,7 +51,7 @@ model OnRampTransaction{
   token String @unique
   provider String 
   startTime DateTime
-  userId Int @unique
+  userId Int
   user User @relation(fields: [userId] , references: [id])
 }
 

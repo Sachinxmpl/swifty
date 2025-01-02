@@ -23,14 +23,16 @@ export const authOptions = {
       },
       async authorize(credentails: Credentials) {
         const { phone, password } = credentails;
+        console.log("===================================")
         console.log("__________PHONE", phone, password);
         const hashedpassword = await bcrypt.hash(password, 10);
-
+        console.log("==================")
         const existinguser = await prismaClient.user.findFirst({
           where: {
             number: phone,
           },
         });
+        console.log(existinguser)
         if (existinguser) {
           const isPasswordValid = await bcrypt.compare(
             password,
@@ -48,6 +50,7 @@ export const authOptions = {
         }
 
         try {
+          console.log("++++++++++++++++++++++++++++++++++++++++++++++++")
           console.log("______________Creating new user____________________");
           const createdUser = await prismaClient.user.create({
             data: {
@@ -59,7 +62,30 @@ export const authOptions = {
           await prismaClient.balance.create({
             data : {
               userId : createdUser.id,
+              amount : Number("999999") , 
+              locked : Number("111111")
             }
+          })
+
+          await prismaClient.onRampTransaction.createMany({
+            data : [
+              {
+                userId 	: createdUser.id,
+                status : "Success",
+                amount : Number("99999") , 
+                token : "123445" , 
+                provider : "Global Ime Bank" ,
+                startTime : new Date()
+              },
+              {
+                userId 	: createdUser.id,
+                status : "Failure",
+                amount : Number("1111") , 
+                token : "445" , 
+                provider : "Global Ime Bank" ,
+                startTime : new Date()
+              }
+            ]
           })
 
           return {

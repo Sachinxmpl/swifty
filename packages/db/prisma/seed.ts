@@ -1,51 +1,51 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 async function main() {
-  const alice = await prisma.user.upsert({
-    where: { number: '9999999999' },
-    update: {},
-    create: {
-      number: '9999999999',
-      password: 'alice',
-      name: 'alice',
-      onRampTransactions: {
-        create: {
-          startTime: new Date(),
-          status: "Success",
-          amount: 20000,
-          token: "122",
-          provider: "HDFC Bank",
-        },
-      },
-    },
+  const sachin = await  prisma.user.upsert({
+    where : { number : '11111111'} , 
+    update : {} , 
+    create  : {
+        number : '1111111111',
+        password : "sachin",
+        name : "sachin" , 
+        onRampTransactions : {
+            create : {
+                startTime : new Date() , 
+                status : "Success" , 
+                amount : 2000 , 
+                token : "1234" , 
+                provider : "Global Ime Bank"
+            }
+        }
+    }
   })
-  const bob = await prisma.user.upsert({
-    where: { number: '9999999998' },
+  const shyam = await prisma.user.upsert({
+    where: { number: "2222222222" },
     update: {},
     create: {
-      number: '9999999998',
-      password: 'bob',
-      name: 'bob',
+      number: "2222222222",
+      password: "shyam",
+      name: "shyam",
       onRampTransactions: {
         create: {
           startTime: new Date(),
           status: "Failure",
           amount: 2000,
-          token: "123",
-          provider: "HDFC Bank",
+          token: "567",
+          provider: "Nabil Bank",
         },
       },
     },
-  })
-  console.log({ alice, bob })
+  });
+  console.log({ sachin, shyam });
 }
 main()
   .then(async () => {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   })
   .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
