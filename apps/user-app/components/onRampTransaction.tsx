@@ -19,11 +19,14 @@ export const OnRampTransactions = ({
             </Card>
         )
     }
+    const oneDayAgo = new Date();
+    oneDayAgo.setDate(oneDayAgo.getDate() - 1)
+    const recentTransactions = transactions.filter(t => (t.time > oneDayAgo) && (t.status === "Success"))
     return (
         <Card title="Recent transactions">
             <div className="pt-4 space-y-4">
                 {
-                    transactions.map(transac =>
+                    recentTransactions.map(transac =>
                         <div className="flex justify-between items-center bg-gray-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                             <div>
                                 <div className="text-sm font-medium text-gray-700">

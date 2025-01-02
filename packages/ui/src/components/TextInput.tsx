@@ -2,11 +2,11 @@
 
 export const TextInput = ({
     placeholder,
-    onChange,
+    handleChange,
     label
 }: {
     placeholder: string,
-    onChange: (value: string) => void,
+    handleChange: any ,
     label: string
 }) => {
     return (
@@ -14,7 +14,7 @@ export const TextInput = ({
             <label className="block mb-2 text-sm font-medium test-gray-900">
                 {label}
             </label>
-            <input onChange={(e) => onChange(e.target.value)} type="text" id="first_name" className="bg-gray-100 border-gray-600 text-gray-900 text-sm rounded-lg focusing-blue-500 focus:border-red block w-full p-3" placeholder={placeholder} />
+            <input onChange={(e)=> handleChange(e.target.value)} type="text" id="first_name" className="bg-gray-100 border-gray-600 text-gray-900 text-sm rounded-lg focusing-blue-500 focus:border-red block w-full p-3" placeholder={placeholder} />
         </div>
     )
 }
