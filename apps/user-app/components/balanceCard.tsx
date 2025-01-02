@@ -1,37 +1,43 @@
-import {Card} from "@repo/ui/card"
+import { Card } from "@repo/ui/card";
 
-export const BalanceCard = ({amount , locked} : {
-    amount : number , 
-    locked : number 
-}) =>{
+export const BalanceCard = ({
+    amount,
+    locked,
+}: {
+    amount: number;
+    locked: number;
+}) => {
     return (
-        <>
-            <Card title={"Balance"}>
-                <div className="flex justify-between border-b border-slate-300 pb-2">
-                    <div>
-                        Unlocked balance
-                    </div>
-                    <div>
-                        {amount/100}NPR
-                    </div>
+        <Card title={"Balance"} >
+            <div className="space-y-4">
+                <div className="flex justify-between items-center border-b border-gray-200 pb-4">
+                    <span className="text-gray-500 ">
+                        Unlocked Balance
+                    </span>
+                    <span className="text-gray-700 ">
+                        {amount / 100} NPR
+                    </span>
                 </div>
-                <div className="flex justify-between border-b border-slate-300 py-2">
-                    <div>
-                        Total Locked balance
-                    </div>
-                    <div>
-                        {locked/100} NPR
-                    </div>
+
+                <div className="flex justify-between items-center border-b border-gray-200 pb-4">
+                    <span className="text-gray-500">
+                        Locked Balance
+                    </span>
+                    <span className="text-gray-700">
+                        {locked / 100} NPR
+                    </span>
                 </div>
-                <div className="flex justify-between border-b border-x-slate-300 py-2">
-                    <div>
-                        Total balance
-                    </div>
-                    <div>
-                        {(locked + amount)/100} NPR
-                    </div>
+
+    
+                <div className="flex justify-between items-center">
+                    <span className="text-gray-600 font-medium">
+                        Total Balance
+                    </span>
+                    <span className="text-blue-400 font-bold text-medium">
+                        {(locked + amount) / 100} NPR
+                    </span>
                 </div>
-            </Card>
-        </>
-    )
-}
+            </div>
+        </Card>
+    );
+};

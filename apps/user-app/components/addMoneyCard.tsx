@@ -16,7 +16,7 @@ const supported_banks = [
     },
     {
         name: "Global Ime Bank",
-        redirectUrl: "http://globalimebank.org/"
+        redirectUrl: "https://www.globalimebank.com/personal/"
     }
 ]
 
@@ -29,7 +29,7 @@ export const AddMoney = () => {
 
                 }} />
 
-                <div className="py-4 text-left">
+                <div className="py-4 text-sm font-medium">
                     Bank
                 </div>
                 <Select onSelect={(value) => {
@@ -41,7 +41,7 @@ export const AddMoney = () => {
 
                 <div className="flex justify-center pt-4">
                     <Button handleClick={() => {
-                        window.location.href = redirectUrl || "";
+                        window.open(redirectUrl)
                     }}>
                         Add Money
                     </Button>

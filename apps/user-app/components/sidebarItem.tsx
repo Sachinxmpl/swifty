@@ -18,14 +18,16 @@ export const SideBarItem = ({
 
     return(
         <div className= {`flex 
-        ${selected ?"text-[#2e48cb]" : "text-slate-500" }
+        ${selected ?"text-[#3c93f0]" : "text-slate-500" }
         cursor-pointer 
-        p-2
-        pl-8
+        p-4
+        pl-10
+        pr-0
+        font-medium
         `}
             onClick={()=> router.push(href)}
         >   
-            <div>
+            <div className="pr-2">
                 {icon}
             </div>
             <div>

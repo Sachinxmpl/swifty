@@ -10,8 +10,8 @@ export const Appbar = ({
     Logout: () => void
 }) => {
     return (
-        <div className="flex justify-between border-b px-4">
-            <div className="text-lg flex flex-col justify-center">
+        <div className="flex justify-between border-b px-4  pl-20 pt-3 pb-3">
+            <div className="font-bold text-2xl flex flex-col justify-center ">
                 Swifty
             </div>
             <div className="flex flex-col justify-center pt-2">
