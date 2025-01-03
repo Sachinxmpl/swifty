@@ -33,7 +33,7 @@ app.post("/verifytransactions", async (req: Request, res: any) => {
         },
         data: {
           amount: {
-            increment: (Number(paymentInfomation.amount) * 100),
+            increment: (Number(paymentInfomation.amount)),
           },
         },
       }),

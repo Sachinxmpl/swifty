@@ -22,6 +22,8 @@ model User{
   name String? @default("user")
   balance Balance?
   onRampTransactions OnRampTransaction[]
+  sentTransfer p2pTransaction[] @relation(name : "FromUserRelation")
+  receiveTransfer p2pTransaction[] @relation(name : "ToUserRelation")
 }
 
 model merchant{
@@ -53,6 +55,16 @@ model OnRampTransaction{
   startTime DateTime
   userId Int
   user User @relation(fields: [userId] , references: [id])
+}
+
+model p2pTransaction{
+  id Int @id @default(autoincrement())
+  amount Int 
+  timeStamp DateTime
+  senderUserId Int 
+  sender User @relation(name: "FromUserRelation" , fields: [senderUserId] , references: [id])
+  receiverUserId Int
+  receiver User @relation(name : "ToUserRelation" , fields: [receiverUserId] , references: [id])
 }
 
 enum onRampStatus{

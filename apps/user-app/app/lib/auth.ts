@@ -29,7 +29,6 @@ export const authOptions = {
             number: phone,
           },
         });
-        console.log(existinguser)
         if (existinguser) {
           const isPasswordValid = await bcrypt.compare(
             password,
@@ -47,8 +46,7 @@ export const authOptions = {
         }
 
         try {
-          console.log("++++++++++++++++++++++++++++++++++++++++++++++++")
-          console.log("______________Creating new user____________________");
+        
           const createdUser = await prismaClient.user.create({
             data: {
               number: phone,

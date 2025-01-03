@@ -17,7 +17,7 @@ export async function createOnRampTransaction({amount , provider} : {amount : nu
     await prismaClient.onRampTransaction.create({
         data :{
             userId : Number(session?.user.id),
-            amount  : amount , 
+            amount  : amount * 100 , 
             provider : provider ,
             token : token , 
             startTime : new Date(),
