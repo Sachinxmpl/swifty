@@ -13,7 +13,7 @@ app.post("/hello", (req, res) => {
   });
 });
 
-app.post("/bankwebhook", async (req: Request, res: any) => {
+app.post("/verifytransactions", async (req: Request, res: any) => {
   const checkingValidReqeust = paymentSchema.safeParse(req.body);
   if (!checkingValidReqeust.success) {
     return res.status(400).json({
@@ -33,7 +33,7 @@ app.post("/bankwebhook", async (req: Request, res: any) => {
         },
         data: {
           amount: {
-            increment: Number(paymentInfomation.amount),
+            increment: Number(paymentInfomation.amount)/100,
           },
         },
       }),

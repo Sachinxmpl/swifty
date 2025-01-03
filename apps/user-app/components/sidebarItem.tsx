@@ -14,6 +14,7 @@ export const SideBarItem = ({
 }) =>{
     const router = useRouter() 
     const pathname = usePathname() 
+    console.log("This is pathname" + pathname)
     const selected = pathname === href 
 
     return(
