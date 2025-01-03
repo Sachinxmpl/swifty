@@ -63,7 +63,7 @@ export const OnRampTransactions = ({
                                         : "text-yellow-600"
                                 }`}
                         >
-                            {transac.status === "Failure" ? "-Rs" : "+Rs"} {transac.amount / 100}
+                            {transac.status === "Failure" ? "-Rs" : "+Rs"} {transac.amount}
                         </div>
                     </div>
                 ))}

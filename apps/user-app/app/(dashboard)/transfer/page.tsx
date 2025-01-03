@@ -4,6 +4,7 @@ import prismaClient from "@repo/db/client";
 import { AddMoney } from "../../../components/addMoneyCard";
 import { BalanceCard } from "../../../components/balanceCard";
 import { OnRampTransactions } from "../../../components/onRampTransaction";
+import { redirect } from "next/navigation";
 
 async function getBalance() {
     const session = await getServerSession(authOptions)
@@ -36,6 +37,10 @@ async function getOnRampTransactions() {
 }
 
 export default async function () {
+    const session = await  getServerSession(authOptions) ; 
+    if(!session?.user.id){
+        redirect("/api/auth/signin")
+    }
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
 
