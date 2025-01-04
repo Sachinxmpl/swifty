@@ -7,45 +7,42 @@ import { RenderP2pTransaction } from "../../../components/renderP2ptransaction";
 
 
 
-async function getP2pTransactions(name: ("sent" | "received")) {
+export interface P2PTransaction {
+    id: number;
+    timeStamp: Date;
+    amount: number;
+    senderUserId: number;
+    receiverUserId: number;
+}
+
+async function getP2pTransactions(name: ("sent" | "received")) : Promise<P2PTransaction[]> {
     const session = await getServerSession(authOptions);
-    let transac: any;
+    let transac: P2PTransaction[]= [];
     if (name == "sent") {
         transac = await prismaClient.p2pTransaction.findMany(
             {
                 where: {
-                    senderUserId: session.user.id
+                    senderUserId: Number(session?.user.id)
                 }
             }
         )
     } else if (name == "received") {
         transac = await prismaClient.p2pTransaction.findMany({
             where: {
-                receiverUserId: session.user.id
+                receiverUserId: Number(session?.user.id)
             }
         })
     }
 
-    return transac.map((t : any) => {
-        return (
-            {
-                id : t.id , 
-                time: t.timeStamp,
-                amount: t.amount,
-                sender : t.senderUserId , 
-                receiver : t.receiverUserId , 
-            }
-        )
-    })
+    return transac 
 }
 
 
 
 export default async function () {
-
     const session = await getServerSession(authOptions)
     if (!session?.user.id) {
-        redirect("/api/auth/signin")
+        return redirect("/api/auth/signin")
     }
 
     const p2pTransactionsSent = await getP2pTransactions("sent")
@@ -60,7 +57,7 @@ export default async function () {
                     <SendMoneyp2p />
                 </div>
                 <div>
-                    <RenderP2pTransaction p2pTransactionsSent={p2pTransactionsSent} p2pTransactionsReceived={p2pTransactionsReceived} />
+                    <RenderP2pTransaction sentTransactions={p2pTransactionsSent} receivedTransactions={p2pTransactionsReceived} />
                 </div>
             </div>
         </>
