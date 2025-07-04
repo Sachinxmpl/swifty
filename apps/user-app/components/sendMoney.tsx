@@ -26,7 +26,7 @@ export const SendMoneyp2p = () => {
         <div className="w-300">
             <Card title="Send Money">
             <div className="w-full p-5">
-                <TextInput label={"Receiver"} placeholder={"Enter receiver number"} handleChange={handlePhoneChange} />
+                <TextInput label={"Receiver"} placeholder={"Receiver's number"} handleChange={handlePhoneChange} />
                 <TextInput label={"Amount"} placeholder={"Enter amount"} handleChange={handleAmountChange} />
                 <div className="flex justify-center pt-4">
                     <Button handleClick={handleSendTransaction}>

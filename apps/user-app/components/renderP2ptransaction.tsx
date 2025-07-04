@@ -18,8 +18,8 @@ export const RenderP2pTransaction = ({sentTransactions, receivedTransactions} : 
                             <div>
                                 <div className="text-sm font-medium text-gray-700">
                                     {sentTransactions.includes(transac)
-                                        ? `Sent NPR to ${transac.receiverUserId}`
-                                        : `Received NPR from ${transac.senderUserId}`}
+                                        ? `Sent NPR to user with id  ${transac.receiverUserId}`
+                                        : `Received NPR from user with id ${transac.senderUserId}`}
                                 </div>
                                 <div className="text-xs text-gray-500">
                                     {new Date(transac.timeStamp).toDateString()}

@@ -7,11 +7,6 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/hello", (req, res) => {
-  res.send({
-    message: "Webhook handler is working fine ",
-  });
-});
 
 app.post("/verifytransactions", async (req: Request, res: any) => {
   const checkingValidReqeust = paymentSchema.safeParse(req.body);
@@ -22,8 +17,17 @@ app.post("/verifytransactions", async (req: Request, res: any) => {
     });
   }
   
-  console.log(checkingValidReqeust);
   const paymentInfomation = checkingValidReqeust.data;
+  const Transaction = await prismaClient.onRampTransaction.findFirst({
+    where: {
+      token: paymentInfomation.token,
+    },
+  })
+  if(Transaction == null || Transaction?.status == "Success"){
+    return res.status(200).json({
+      message: "The transaction was already processed or transaction doesn't exist",
+    })
+  }
 
   try {
     await prismaClient.$transaction([
@@ -33,7 +37,7 @@ app.post("/verifytransactions", async (req: Request, res: any) => {
         },
         data: {
           amount: {
-            increment: (Number(paymentInfomation.amount)),
+            increment: (Number(paymentInfomation.amount) * 100),
           },
         },
       }),

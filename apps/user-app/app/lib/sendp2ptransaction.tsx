@@ -62,7 +62,7 @@ export async function sendP2pTrasactionMoney(receiverNo : string , amount : numb
 
        await tx.p2pTransaction.create({
         data : {
-            amount : amount  , 
+            amount : amount * 100  , 
             timeStamp : new Date() , 
             senderUserId : Number(sender.id) , 
             receiverUserId : Number(receiver.id)
