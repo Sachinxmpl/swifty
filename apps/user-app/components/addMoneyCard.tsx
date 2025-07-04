@@ -22,7 +22,7 @@ const supported_banks = [
 ]
 
 export const AddMoney = () => {
-    const [redirectUrl, setRedirectUrl] = useState(supported_banks[0]?.redirectUrl)
+    const [, setRedirectUrl] = useState(supported_banks[0]?.redirectUrl)
     const [amount , setAmount] = useState(0)
     const [provider , setProvider] = useState(supported_banks[0]?.name || "")
 
