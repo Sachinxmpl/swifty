@@ -7,22 +7,23 @@ type Credentials = {
   password: string;
 };
 
-
-
 export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentails",
       credentials: {
-        phone: { label: "Number", type: "string", placeholder: "9840509605 " },
+        phone: { label: "Number", type: "string", placeholder: "98********" },
         password: {
           label: "Password",
           type: "password",
           placeholder: "Enter Password",
         },
       },
-      async authorize(credentails: Credentials) {
-        const { phone, password } = credentails;
+      async authorize(credentials?: Credentials) {
+        if(!credentials){
+          return null ; 
+        }
+        const { phone, password } = credentials;
         const hashedpassword = await bcrypt.hash(password, 10);
         const existinguser = await prismaClient.user.findFirst({
           where: {
