@@ -37,7 +37,7 @@ export const authOptions = {
           );
           if (isPasswordValid) {
             return {
-              id: existinguser.id,
+              id: existinguser.id.toString(),
               name: existinguser.name,
               number: existinguser.number,
             };
@@ -64,7 +64,7 @@ export const authOptions = {
           })
 
           return {
-            id: createdUser.id,
+            id: createdUser.id.toString(),
             name: createdUser.name,
             number: createdUser.number,
           };
