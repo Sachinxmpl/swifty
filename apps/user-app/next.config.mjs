@@ -1,11 +1,5 @@
-import path from 'path';
-
 export default {
   reactStrictMode: true,
-  output: 'standalone',
+  transpilePackages: ['ui', 'store'],
 
-  experimental: {
-    transpilePackages: ['ui', 'store'],
-    outputFileTracingRoot: path.join(process.cwd(), '../../'),
-  },
 };
